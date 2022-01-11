@@ -1,35 +1,40 @@
 package com.teachmeskills.lesson_9.task1.DocumentNumber.task1;
 
+import java.util.Locale;
+
 public class DocumentNumber  {
 
-    String documentNumber;
+    String documentNumber ;
 
     public static  String replace(String documentNumber) {
-        String result = documentNumber.substring(0, 13);//
-        String str = result.replace("-asw-", "");
-        return str;
+        String[] array = documentNumber.split("-");
+        for (int i = 0; i < array.length; i++) {
+        }
+        return array[0]+array[2];
         }
     public static String blocsReplace(String documentNumber) {
-        String str1 = documentNumber.replace("asw", "   ");
-        String str2 = str1.replace("htf", "   ");
-        return str2;
+        String[] array = documentNumber.split("-");
+        String str = documentNumber.replace(array[1], "  ");
+        String str1 = str.replace(array[3], "  ");
+        return str1;
         }
     public static String blocsToLowerCase(String documentNumber) {
-        String str3 = documentNumber.replace("1221-", "");
-        String str4 = str3.replace("-4434-", "/");
-        String str5 = str4.replace("-1", "/");
-        String str6 = str5.replace("2", "/");
-        return str6.toLowerCase();
+        String rrr = documentNumber.replaceAll("[^a-zA-Z ]", "");
+        StringBuffer sb = new StringBuffer(rrr);
+        sb.insert(3 , "/");
+        sb.insert(7 , "/");
+        sb.insert(9 , "/");
+        String aaa = String.valueOf(sb);
+        return  aaa.toLowerCase(Locale.ROOT);
         }
     public static StringBuilder blocsToUpperCase(String documentNumber) {
-        StringBuilder sss = new StringBuilder();
-        String str3 = documentNumber.replace("1221-", "");
-        String str4 = str3.replace("-4434-", "/");
-        String str5 = str4.replace("-1", "/");
-        String str6 = str5.replace("2", "/");
-        sss.append("LETTERS:");
-        sss.append(str6.toUpperCase());
-        return sss;
+        String rrr = documentNumber.replaceAll("[^a-zA-Z ]", "");
+        StringBuilder sb = new StringBuilder(rrr);
+        sb.insert(3 , "/");
+        sb.insert(7 , "/");
+        sb.insert(9 , "/");
+        String eee = "letters:" + String.valueOf(sb);
+        return new StringBuilder(eee.toUpperCase());
         }
     public static boolean containsDocumentNumber(String documentNumber){
         if (documentNumber.contains("abc")) {
@@ -53,7 +58,6 @@ public class DocumentNumber  {
         } else {
             return false;
         }
-
     }
 
 }
